@@ -14,7 +14,10 @@ group :test do
 	gem 'database_cleaner'
 	gem 'factory_girl_rails'
 	gem 'guard-rspec'
+	gem 'shoulda-matchers'
 end
+
+gem 'email_validator'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
