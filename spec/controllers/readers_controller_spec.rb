@@ -20,6 +20,8 @@ describe ReadersController do
 
 	describe "POST create" do
 		let!(:reader) { stub_model(Reader) }
+		let!(:params_dois) { { "email" => "email@email.com" , "password" => "pass", "password_confirmation" => "pass" } }
+
 		before :each do
 				Reader.stub(:new).and_return(reader)
 		end
@@ -35,23 +37,25 @@ describe ReadersController do
 
 		it "send save message to reader model" do
 			reader.should_receive(:save)
-			post :create
+			post :create, reader: params_dois
 		end
 
 		context "when save message returns true" do 
+
 			before :each do
 				reader.stub(:save).and_return(true)
 			end
 
 			it "redirects to root url" do
-				post :create
+				post :create, reader: params_dois
 				expect(response).to redirect_to root_url
 			end
 
 			it "assigns a success flash message" do
-				post :create
+				post :create, reader: params_dois
 				expect(flash[:notice]).not_to be_nil
 			end
 		end
+
 	end
 end
