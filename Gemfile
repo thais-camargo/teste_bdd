@@ -18,6 +18,7 @@ group :test do
 end
 
 gem 'email_validator'
+gem 'active_attr'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
