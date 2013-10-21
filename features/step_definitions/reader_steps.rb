@@ -42,6 +42,19 @@ Then /^I should see guest menu$/ do
 	expect(page).to have_link('Register', href: register_path)
 end
 
+Given /^I am a "(.*?)" reader$/ do |email|
+	step "reader with \"#{email}\" exists"
+	step "I fill the login form with valid data for \"#{email}\" reader"
+end
+
+When /^I go to the home page$/ do 
+	visit root_url
+end
+
+Then /^I should see "(.*?)" reader menu$/ do |email|
+	expect(page).to have_content("Welcome, #{email}")
+end
+
 Given /^reader with "(.*?)" exists$/ do |email|
 	Reader.create(email: email, password: "pass", password_confirmation: "pass")
 end
