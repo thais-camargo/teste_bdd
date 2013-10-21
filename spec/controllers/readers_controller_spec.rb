@@ -55,6 +55,11 @@ describe ReadersController do
 				post :create, reader: params_dois
 				expect(flash[:notice]).not_to be_nil
 			end
+
+			it "logs in reader" do
+				post :create, reader: params_dois
+				expect(session[:reader_id]).to eq reader.id
+			end
 		end
 
 		context "when save message return false" do
